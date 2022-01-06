@@ -10,4 +10,25 @@
     flex-flow: column nowrap;
     text-align: center;
     font-size: 2em;
+    justify-content: center;
+    align-content: center;
+    height: 100vh;
+}
+
+.input-area>h1,
+h2 {
+    padding: .5em;
+}
+
+p {
+    padding: .25em;
+}
+
+button {
+    padding: 1em 2em;
+    font-size: .5em;
+}
+
+span {
+    padding: .25em;
 }
