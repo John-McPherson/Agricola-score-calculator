@@ -7,10 +7,15 @@ for (let x = 0; x < plus.length; x++) {
 let input = 3;
 
 function increase() {
-    if (this.className === "plus") {
+    if (this.className === "plus" && input < 5) {
         input++
-    } else if (this.className === "minus") {
+    } else if (this.className === "minus" && input > 2) {
         input--
     }
-    console.log(input)
+    update_input()
+}
+
+function update_input() {
+    let output = document.getElementsByClassName("input-text")[0]
+    output.innerHTML = `${input}`
 }
