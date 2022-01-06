@@ -1,0 +1,7 @@
+/* basic style for input area */
+.input-area {
+    display: flex;
+    flex-flow: column nowrap;
+    text-align: center;
+    font-size: 2em;
+}
