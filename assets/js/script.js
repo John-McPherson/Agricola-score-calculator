@@ -15,6 +15,8 @@ function addEventListeners() {
 let input = 3;
 let playerCount = 3;
 let currentPlayer = 0;
+let min = 2;
+let max = 5;
 let players = [];
 let type = ["", "Fields", "Pastures", "Grain", "Vegetables", "Sheep", "Wild Boar", "Cattle", "Unused Spaces", "Fenced Stables and Clay Hut Rooms", "Stone House Rooms", "Family Members", "Points For Cards", "Bonus Points"]
 let pointValue = ["", [2, 3, 4, 5],
@@ -28,9 +30,9 @@ let pointValue = ["", [2, 3, 4, 5],
 let round = 0;
 
 function increase() {
-    if (this.className === "plus" && input < 5) {
+    if (this.className === "plus" && input < max) {
         input++
-    } else if (this.className === "minus" && input > 0) {
+    } else if (this.className === "minus" && input > min) {
         input--
     }
     updateInput()
@@ -156,6 +158,8 @@ function newPlayer(y) {
     `
     } else {
         round++
+        min = 0;
+        max = 100;
         nextScreen()
 
     }
