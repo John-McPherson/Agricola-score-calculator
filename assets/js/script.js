@@ -79,17 +79,29 @@ function newScreen() {
     } else {
         round++
         currentPlayer = 0;
+        // if (round > 13) {
+        //     displayTotal();
+        // } else {
+        //     nextScreen();
+        // }
         nextScreen()
     }
 
+}
 
+function displayTotal() {
+    for (let x = 0; x < playerCount; x++) {
+        players[x]
+
+    }
 }
 
 function updatePlayer(event) {
     event.preventDefault();
     let name = document.getElementById("name").value
     let player = {
-        playerName: name
+        playerName: name,
+        totalPoints: 0
     }
     players.push(player)
     newPlayer(players.length + 1)
@@ -111,6 +123,7 @@ function updateScore() {
         score = workoutScore()
     }
     players[currentPlayer][type[round]] = score;
+    players[currentPlayer]['totalPoints'] = players[currentPlayer]['totalPoints'] + score;
 }
 
 function workoutScore() {
