@@ -6,7 +6,7 @@ function addEventListeners() {
         plus[x].addEventListener("click", increase);
         minus[x].addEventListener("click", increase);
         if (round === 0) {
-            next[x].addEventListener("click", set_up);
+            next[x].addEventListener("click", setUp);
         } else {
             next[x].addEventListener("click", newScreen);
         }
@@ -33,15 +33,15 @@ function increase() {
     } else if (this.className === "minus" && input > 0) {
         input--
     }
-    update_input()
+    updateInput()
 }
 
-function update_input() {
+function updateInput() {
     let output = document.getElementsByClassName("input-text")[0]
     output.innerHTML = `${input}`
 }
 
-function set_up() {
+function setUp() {
     let output = document.getElementsByClassName("input-text")[0]
     playerCount = parseInt(output.innerHTML);
     newPlayer(1)
@@ -72,7 +72,6 @@ function nextScreen() {
 
 function newScreen() {
     updateScore()
-    console.log(players)
     if (currentPlayer !== playerCount - 1) {
         currentPlayer++
         nextScreen()
@@ -145,8 +144,8 @@ function workoutScore() {
 
 function newPlayer(y) {
     if (y <= playerCount) {
-        let setup_area = document.getElementById("set-up")
-        setup_area.innerHTML = `<h1>Agricola Score Calculator</h1> 
+        let setupArea = document.getElementById("set-up")
+        setupArea.innerHTML = `<h1>Agricola Score Calculator</h1> 
     <form onsubmit="updatePlayer(event)">
     <label for="name">
         <h2>Player ${y} name</h2>
