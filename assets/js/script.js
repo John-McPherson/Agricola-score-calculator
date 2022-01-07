@@ -16,7 +16,15 @@ let input = 3;
 let playerCount = 3;
 let currentPlayer = 0;
 let players = [];
-let type = ["", "Fields", "Pastures"]
+let type = ["", "Fields", "Pastures", "Grain", "Vegetables", "Sheep", "Wild Boar", "Cattle", "Unused Spaces", "Fenced Stables and Clay Hut Rooms", "Stone House Rooms", "Family Members", "Points For Cards", "Bonus Points"]
+let pointValue = ["", [2, 3, 4, 5],
+    [1, 2, 3, 4],
+    [1, 4, 6, 8],
+    [1, 2, 3, 4],
+    [1, 4, 6, 8],
+    [1, 3, 5, 7],
+    [1, 2, 4, 6]
+]
 let round = 0;
 
 function increase() {
@@ -64,12 +72,12 @@ function nextScreen() {
 
 function newScreen() {
     updateScore()
+    console.log(players)
     if (currentPlayer !== playerCount - 1) {
         currentPlayer++
         nextScreen()
     } else {
         round++
-        console.log(round)
         currentPlayer = 0;
         nextScreen()
     }
@@ -88,7 +96,35 @@ function updatePlayer(event) {
 }
 
 function updateScore() {
-    players[currentPlayer][type[round]] = input;
+    let score = input;
+    if (type[round] === "Unused Spaces") {
+        score = input * -1;
+    } else if (type[round] === "Fenced Stables and Clay Hut Rooms") {
+        score = input * 1;
+    } else if (type[round] === "Stone House Rooms") {
+        score = input * 2;
+    } else if (type[round] === "Family Members") {
+        score = input * 3;
+    } else if (type[round] === "Points For Cards" || type[round] === "Bonus Points") {
+        score = input;
+    } else {
+        score = workoutScore()
+    }
+    players[currentPlayer][type[round]] = score;
+}
+
+function workoutScore() {
+    if (input < pointValue[round][0]) {
+        return -1
+    } else if (input < pointValue[round][1]) {
+        return 1
+    } else if (input < pointValue[round][2]) {
+        return 2
+    } else if (input < pointValue[round][3]) {
+        return 3
+    } else {
+        return 4
+    }
 }
 
 function newPlayer(y) {
