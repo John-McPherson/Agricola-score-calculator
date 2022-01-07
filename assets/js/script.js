@@ -30,7 +30,7 @@ let round = 0;
 function increase() {
     if (this.className === "plus" && input < 5) {
         input++
-    } else if (this.className === "minus" && input > 2) {
+    } else if (this.className === "minus" && input > 0) {
         input--
     }
     update_input()
@@ -79,21 +79,24 @@ function newScreen() {
     } else {
         round++
         currentPlayer = 0;
-        // if (round > 13) {
-        //     displayTotal();
-        // } else {
-        //     nextScreen();
-        // }
-        nextScreen()
+        if (round > 13) {
+            displayTotal();
+        } else {
+            nextScreen();
+        }
     }
 
 }
 
 function displayTotal() {
+    let setupArea = document.getElementById("set-up")
+    let html = ""
     for (let x = 0; x < playerCount; x++) {
-        players[x]
-
+        let name = players[x].playerName
+        let totalScore = players[x].totalPoints
+        html += `<p>${name} scored ${totalScore}</p>`
     }
+    setupArea.innerHTML = `${html}`
 }
 
 function updatePlayer(event) {
