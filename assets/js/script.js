@@ -63,6 +63,7 @@ function nextScreen() {
 }
 
 function newScreen() {
+    updateScore()
     if (currentPlayer !== playerCount - 1) {
         currentPlayer++
         nextScreen()
@@ -71,8 +72,6 @@ function newScreen() {
         console.log(round)
         currentPlayer = 0;
         nextScreen()
-
-
     }
 
 
@@ -86,6 +85,10 @@ function updatePlayer(event) {
     }
     players.push(player)
     newPlayer(players.length + 1)
+}
+
+function updateScore() {
+    players[currentPlayer][type[round]] = input;
 }
 
 function newPlayer(y) {
