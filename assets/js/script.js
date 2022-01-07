@@ -1,14 +1,17 @@
-let plus = document.getElementsByClassName("plus");
-let minus = document.getElementsByClassName("minus");
-let next = document.getElementsByClassName("next");
-for (let x = 0; x < plus.length; x++) {
-    plus[x].addEventListener("click", increase);
-    minus[x].addEventListener("click", increase);
-    next[x].addEventListener("click", set_up);
+function addEventListeners() {
+    let plus = document.getElementsByClassName("plus");
+    let minus = document.getElementsByClassName("minus");
+    let next = document.getElementsByClassName("next");
+    for (let x = 0; x < plus.length; x++) {
+        plus[x].addEventListener("click", increase);
+        minus[x].addEventListener("click", increase);
+        next[x].addEventListener("click", set_up);
+    }
 }
 let input = 3;
 let player_count = 3;
 let players = [];
+type = ["Fields", "pastures"]
 
 function increase() {
     if (this.className === "plus" && input < 5) {
@@ -32,8 +35,24 @@ function set_up() {
 }
 
 
-function next_screen() {
+function nextScreen() {
+    input = 0;
+    let setupArea = document.getElementById("set-up")
+    setupArea.innerHTML = `
+    <h1>Agricola Score Calculator</h1>
+    <h2>${players[0].playerName}</h2>
+    <p>How Many ${type[0]}?</p>
+    <p class="input-text">0</p>
+    <span class="plus-minus">
+        <button class="minus">-</button>
+        <button class="plus">+</button>
+    </span>
 
+    <span>
+        <button class="next">Next</button>
+    </span>
+    `
+    addEventListeners()
 }
 
 function updatePlayer(event) {
@@ -61,8 +80,8 @@ function newPlayer(y) {
 </form>
     `
     } else {
-        let setup_area = document.getElementById("set-up")
-        setup_area.innerHTML = `done`
+        nextScreen()
 
     }
 }
+addEventListeners()
